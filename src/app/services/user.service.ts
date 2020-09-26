@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-const API_URL = 'http://localhost:8080/api/test/';
+const API_URL = 'http://localhost:9090/jwt/';
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +11,12 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  getPublicContent(): Observable<any> {
-    return this.http.get(API_URL + 'all', { responseType: 'text' });
+  getPublicArea(): Observable<any> {
+    return this.http.get(API_URL + 'ispublic', { responseType: 'text' });
   }
 
-  getUserBoard(): Observable<any> {
-    return this.http.get(API_URL + 'user', { responseType: 'text' });
+  getMemberArea(): Observable<any> {
+    return this.http.get(API_URL + 'member', { responseType: 'text' });
   }
 
 }

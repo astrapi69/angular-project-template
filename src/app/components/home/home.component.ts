@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.userService.getPublicContent().subscribe(
+    this.userService.getPublicArea().subscribe(
       data => {
         this.content = data;
       },

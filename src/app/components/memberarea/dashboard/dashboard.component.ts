@@ -12,7 +12,7 @@ export class DashboardComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.userService.getUserBoard().subscribe(
+    this.userService.getMemberArea().subscribe(
       data => {
         this.content = data;
       },

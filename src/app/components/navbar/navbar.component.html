@@ -1,9 +1,21 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark">
-  <button class="navbar-toggler navbar-toggler-right" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+  <button class="navbar-toggler navbar-toggler-right"
+          type="button"
+          (click)="isNavbarCollapsed = !isNavbarCollapsed"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
+
   <a class="navbar-brand" href="#">Template Navbar</a>
-  <div [ngbCollapse]="isNavbarCollapsed" class="navbar-collapse" id="navbarSupportedContent">
+
+  <div [ngbCollapse]="isNavbarCollapsed"
+       class="navbar-collapse"
+       id="navbarSupportedContent">
+
     <ul class="navbar-nav mr-auto" *ngIf="!isSignedIn">
       <li class="nav-item active">
         <a class="nav-link" routerLink="home">home</a>
@@ -26,8 +38,15 @@
     </ul>
 
     <form class="form-inline my-2 my-lg-0" [formGroup]="form">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" formControlName="searchText">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <input class="form-control mr-sm-2"
+             type="text"
+             placeholder="Search"
+             formControlName="searchText">
+      <button class="btn btn-outline-success my-2 my-sm-0"
+              type="submit">
+        Search
+      </button>
     </form>
+
   </div>
 </nav>

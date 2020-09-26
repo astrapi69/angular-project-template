@@ -18,7 +18,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.isSignedIn = !!this.sessionStorageService.getToken();
+    this.isSignedIn = !!this.sessionStorageService.getUserToken();
 
     if (this.isSignedIn) {
       const user = this.sessionStorageService.getUser();

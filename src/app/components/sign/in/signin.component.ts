@@ -17,7 +17,7 @@ export class SigninComponent implements OnInit {
   constructor(private authService: AuthService, private sessionStorageService: SessionStorageService) { }
 
   ngOnInit() {
-    if (this.sessionStorageService.getToken()) {
+    if (this.sessionStorageService.getUserToken()) {
       this.isSignedIn = true;
       this.roles = this.sessionStorageService.getUser().roles;
     }
@@ -26,7 +26,7 @@ export class SigninComponent implements OnInit {
   onSubmit() {
     this.authService.signIn(this.form).subscribe(
       data => {
-        this.sessionStorageService.saveToken(data.accessToken);
+        this.sessionStorageService.setUserToken(data.accessToken);
         this.sessionStorageService.saveUser(data);
 
         this.isSingInFailed = false;
