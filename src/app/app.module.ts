@@ -18,6 +18,8 @@ import { SignupComponent } from './components/sign/up/signup.component';
 import { SigninComponent } from './components/sign/in/signin.component';
 import { TermofuseComponent } from './components/termofuse/termofuse.component';
 import { DashboardComponent } from './components/memberarea/dashboard/dashboard.component';
+import { PasswordForgottenComponent } from './components/sign/in/password-forgotten/password-forgotten.component';
+import { PasswordResetComponent } from './components/sign/in/password-reset/password-reset.component';
 
 @NgModule({
   imports: [
@@ -41,6 +43,8 @@ import { DashboardComponent } from './components/memberarea/dashboard/dashboard.
     SigninComponent,
     TermofuseComponent,
     DashboardComponent,
+    PasswordForgottenComponent,
+    PasswordResetComponent,
   ],
   bootstrap:    [ MainComponent ],
   providers: [{provide: APP_BASE_HREF, useValue : '/' },

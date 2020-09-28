@@ -34,4 +34,14 @@ export class AuthService {
     }, this.options);
   }
 
+  forgotPassword(userEmail: string): Observable<any> {
+    return this.http.post(this.contextUrl + '/forgotpassword', {
+      email: userEmail,
+    }, this.options);
+  }
+
+  newPassword(body): Observable<any> {
+    return this.http.post(this.contextUrl + '/newpassword', body);
+  }
+
 }

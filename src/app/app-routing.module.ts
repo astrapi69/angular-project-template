@@ -9,18 +9,22 @@ import {ImprintComponent} from './components/imprint/imprint.component';
 import {TermofuseComponent} from './components/termofuse/termofuse.component';
 import {SignupComponent} from './components/sign/up/signup.component';
 import {DashboardComponent} from './components/memberarea/dashboard/dashboard.component';
+import {PasswordForgottenComponent} from './components/sign/in/password-forgotten/password-forgotten.component';
+import {PasswordResetComponent} from './components/sign/in/password-reset/password-reset.component';
 
 const routes: Routes = [
   { path: '', component: AppComponent },
   {path: 'main', component: MainComponent},
   {path: 'home', component: HomeComponent},
   {path: 'signin', component: SigninComponent},
+  {path: 'passwordForgotten', component: PasswordForgottenComponent},
+  {path: 'passwordReset', component: PasswordResetComponent},
   {path: 'signup', component: SignupComponent},
   {path: 'signout', component: SignoutComponent},
   {path: 'imprint', component: ImprintComponent},
   {path: 'termofuse', component: TermofuseComponent},
   {path: 'dashboard', component: DashboardComponent},
-  { path: '', redirectTo: 'home', pathMatch: 'full' }
+  { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
 
 @NgModule({
