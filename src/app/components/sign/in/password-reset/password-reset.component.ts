@@ -24,6 +24,7 @@ export class PasswordResetComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email], this.forbiddenEmails),
     });
   }
+
   resetPassword(form) {
     console.log(form);
     if (form.valid) {

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-const API_URL = 'http://localhost:9090/jwt/';
+const API_URL = 'http://localhost:9090/v1/jwt/';
 
 @Injectable({
   providedIn: 'root'
