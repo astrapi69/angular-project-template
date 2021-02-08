@@ -8,7 +8,7 @@ import {Signup} from '../components/sign/up/model/signup';
 })
 export class AuthService {
 
-  contextUrl = 'http://localhost:9090/v1/auth';
+  contextUrl = 'http://localhost:9090/v1';
   httpHeaders: HttpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
   options: any;
 
@@ -19,14 +19,14 @@ export class AuthService {
   }
 
   signIn(credentials): Observable<any> {
-    return this.http.post(this.contextUrl + '/signin', {
+    return this.http.post(this.contextUrl + '/auth/signin', {
       username: credentials.username,
       password: credentials.password
     }, this.options);
   }
 
   signUp(signup: Signup): Observable<any> {
-    return this.http.post(this.contextUrl + '/signup', {
+    return this.http.post(this.contextUrl + '/auth/signup', {
       username: signup.username,
       email: signup.email,
       password: signup.password,
@@ -35,13 +35,21 @@ export class AuthService {
   }
 
   forgotPassword(userEmail: string): Observable<any> {
-    return this.http.post(this.contextUrl + '/forgotpassword', {
+    return this.http.post(this.contextUrl + '/resetpassword/email', {
       email: userEmail,
     }, this.options);
   }
 
-  newPassword(body): Observable<any> {
-    return this.http.post(this.contextUrl + '/newpassword', body);
+  newPassword(newUserPassword: string): Observable<any> {
+    return this.http.post(this.contextUrl + '/resetpassword/newpassword', {
+      newPassword: newUserPassword,
+    }, this.options);
+  }
+
+  verifyPasswordResetToken(passwordResetToken: string): Observable<any>  {
+    return this.http.post(this.contextUrl + '/resetpassword/token', {
+      token: passwordResetToken,
+    }, this.options);
   }
 
 }
