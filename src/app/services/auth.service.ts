@@ -9,6 +9,8 @@ import {Signup} from '../components/sign/up/model/signup';
 export class AuthService {
 
   contextUrl = 'http://localhost:9090/v1';
+  authMainPath = '/auth';
+  resetPasswordMainPath = '/resetpassword';
   httpHeaders: HttpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
   options: any;
 
@@ -19,14 +21,14 @@ export class AuthService {
   }
 
   signIn(credentials): Observable<any> {
-    return this.http.post(this.contextUrl + '/auth/signin', {
+    return this.http.post(this.contextUrl + this.authMainPath + '/signin', {
       username: credentials.username,
       password: credentials.password
     }, this.options);
   }
 
   signUp(signup: Signup): Observable<any> {
-    return this.http.post(this.contextUrl + '/auth/signup', {
+    return this.http.post(this.contextUrl + this.authMainPath + '/signup', {
       username: signup.username,
       email: signup.email,
       password: signup.password,
@@ -35,21 +37,24 @@ export class AuthService {
   }
 
   forgotPassword(userEmail: string): Observable<any> {
-    return this.http.post(this.contextUrl + '/resetpassword/email', {
+    return this.http.post(this.contextUrl + this.resetPasswordMainPath + '/email', {
       email: userEmail,
     }, this.options);
   }
 
   newPassword(newUserPassword: string): Observable<any> {
-    return this.http.post(this.contextUrl + '/resetpassword/newpassword', {
+    return this.http.post(this.contextUrl + this.resetPasswordMainPath + '/newpassword', {
       newPassword: newUserPassword,
     }, this.options);
   }
 
   verifyPasswordResetToken(passwordResetToken: string): Observable<any>  {
-    return this.http.post(this.contextUrl + '/resetpassword/token', {
-      token: passwordResetToken,
-    }, this.options);
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    const params = new URLSearchParams();
+    params.append('token', passwordResetToken);
+    const url = this.contextUrl + this.resetPasswordMainPath + '/token';
+    return this.http.get(url,  {headers: this.httpHeaders, params: params});
   }
 
 }
