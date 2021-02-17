@@ -2,33 +2,34 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Signup} from '../components/sign/up/model/signup';
+import {RestPathService} from './rest-path.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  contextUrl = 'http://localhost:9090/v1';
-  authMainPath = '/auth';
-  resetPasswordMainPath = '/resetpassword';
   httpHeaders: HttpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
   options: any;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private restPathService: RestPathService) {
     this.options = {
       headers: this.httpHeaders
     };
   }
 
   signIn(credentials): Observable<any> {
-    return this.http.post(this.contextUrl + this.authMainPath + '/signin', {
+    const url = this.restPathService.getSigninRestPath();
+    return this.http.post(url, {
       username: credentials.username,
       password: credentials.password
     }, this.options);
   }
 
   signUp(signup: Signup): Observable<any> {
-    return this.http.post(this.contextUrl + this.authMainPath + '/signup', {
+    const url = this.restPathService.getSignupRestPath();
+    return this.http.post(url, {
       username: signup.username,
       email: signup.email,
       password: signup.password,
@@ -37,13 +38,15 @@ export class AuthService {
   }
 
   forgotPassword(userEmail: string): Observable<any> {
-    return this.http.post(this.contextUrl + this.resetPasswordMainPath + '/email', {
+    const url = this.restPathService.getForgotPasswordRestPath();
+    return this.http.post(url, {
       email: userEmail,
     }, this.options);
   }
 
   newPassword(newUserPassword: string): Observable<any> {
-    return this.http.post(this.contextUrl + this.resetPasswordMainPath + '/newpassword', {
+    const url = this.restPathService.getNewPasswordRestPath();
+    return this.http.post(url, {
       newPassword: newUserPassword,
     }, this.options);
   }
@@ -53,7 +56,7 @@ export class AuthService {
     headers.append('Content-Type', 'application/json');
     const params = new URLSearchParams();
     params.append('token', passwordResetToken);
-    const url = this.contextUrl + this.resetPasswordMainPath + '/token';
+    const url = this.restPathService.getVerifyPasswordResetTokenPath();
     return this.http.get(url,  {headers: this.httpHeaders, params: params});
   }
 
