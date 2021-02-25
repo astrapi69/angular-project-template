@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {SessionStorageService} from '../../../services/session-storage.service';
+import {SessionStorageService} from '../../../services/storage/session-storage.service';
 import {AuthService} from '../../../services/auth.service';
 
 @Component({
@@ -13,6 +13,7 @@ export class SigninComponent implements OnInit {
   isSingInFailed = false;
   errorMessage = '';
   roles: string[] = [];
+  username: string;
 
   constructor(private authService: AuthService, private sessionStorageService: SessionStorageService) { }
 
@@ -20,13 +21,14 @@ export class SigninComponent implements OnInit {
     if (this.sessionStorageService.getUserToken()) {
       this.isSignedIn = true;
       this.roles = this.sessionStorageService.getUser().roles;
+      this.username = this.sessionStorageService.getUser().username;
     }
   }
 
   onSubmit() {
     this.authService.signIn(this.form).subscribe(
       data => {
-        this.sessionStorageService.setUserToken(data.accessToken);
+        this.sessionStorageService.setUserToken(data.token);
         this.sessionStorageService.saveUser(data);
 
         this.isSingInFailed = false;

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-import {SessionStorageService} from '../../services/session-storage.service';
+import {SessionStorageService} from '../../services/storage/session-storage.service';
 
 @Component({
   selector: 'app-navbar',

@@ -20,16 +20,17 @@ import { TermofuseComponent } from './components/termofuse/termofuse.component';
 import { DashboardComponent } from './components/memberarea/dashboard/dashboard.component';
 import { PasswordForgottenComponent } from './components/sign/in/password-forgotten/password-forgotten.component';
 import { PasswordResetComponent } from './components/sign/in/password-reset/password-reset.component';
+import {AuthInterceptor} from './interceptors/auth.interceptor';
 
 @NgModule({
   imports: [
-    BrowserModule,
     AppRoutingModule,
+    BrowserModule,
     HttpClientModule,
+    FormsModule,
     ErrorHandlingModule,
     ReactiveFormsModule,
     NgbModule,
-    FormsModule
   ],
   declarations: [
     AppComponent,
@@ -48,6 +49,7 @@ import { PasswordResetComponent } from './components/sign/in/password-reset/pass
   ],
   bootstrap:    [ MainComponent ],
   providers: [{provide: APP_BASE_HREF, useValue : '/' },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ServerErrorInterceptor, multi: true }
   ]
 })

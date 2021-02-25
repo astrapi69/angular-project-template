@@ -7,6 +7,8 @@ export const environment = {
   restApiPort: '9090',
 
   authRestMainPath: 'auth',
+  dashboardRestMainPath: 'dashboard',
+  memberPath: 'member',
   signinPath: 'signin',
   signupPath: 'signup',
   emailPath: 'email',

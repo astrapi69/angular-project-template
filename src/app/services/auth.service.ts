@@ -2,7 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Signup} from '../components/sign/up/model/signup';
-import {RestPathService} from './rest-path.service';
+import {RestPathService} from './rest/rest-path.service';
+import {newUrl} from './rest/url-functions';
 
 @Injectable({
   providedIn: 'root'
@@ -52,12 +53,10 @@ export class AuthService {
   }
 
   verifyPasswordResetToken(passwordResetToken: string): Observable<any>  {
-    const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    const params = new URLSearchParams();
-    params.append('token', passwordResetToken);
-    const url = this.restPathService.getVerifyPasswordResetTokenPath();
-    return this.http.get(url,  {headers: this.httpHeaders, params: params});
+    const pathParams: Map<string, string> = new Map();
+    pathParams.set('token', passwordResetToken);
+    const url = newUrl(this.restPathService.getVerifyPasswordResetTokenPath(), pathParams);
+    return this.http.get(url);
   }
 
 }

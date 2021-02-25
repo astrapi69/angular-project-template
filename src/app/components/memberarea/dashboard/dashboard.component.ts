@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../../services/user.service';
+import {DashboardService} from '../../../services/dashboard.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,10 +10,19 @@ import {UserService} from '../../../services/user.service';
 export class DashboardComponent implements OnInit {
   content = '';
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,
+              private dashboardService: DashboardService) { }
 
   ngOnInit() {
     this.userService.getMemberArea().subscribe(
+      data => {
+        this.content = data;
+      },
+      err => {
+        this.content = JSON.parse(err.error).message;
+      }
+    );
+    this.dashboardService.member().subscribe(
       data => {
         this.content = data;
       },

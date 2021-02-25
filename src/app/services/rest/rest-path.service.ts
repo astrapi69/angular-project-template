@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {environment} from '../../environment/environment';
+import {environment} from '../../../environment/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -25,9 +25,19 @@ export class RestPathService {
       + this.getEnvironment().authRestMainPath;
   }
 
+  public getDashboardMainRestPath(): string {
+    return this.getContextPath() + '/'
+      + this.getEnvironment().dashboardRestMainPath;
+  }
+
   public getResetPasswordMainRestPath(): string {
     return this.getContextPath() + '/'
       + this.getEnvironment().resetPasswordMainPath;
+  }
+
+  public getMemberRestPath(): string {
+    return this.getDashboardMainRestPath() + '/'
+      + this.getEnvironment().memberPath;
   }
 
   public getSigninRestPath(): string {

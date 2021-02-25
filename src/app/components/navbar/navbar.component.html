@@ -15,7 +15,7 @@
   <div [ngbCollapse]="isNavbarCollapsed"
        class="navbar-collapse"
        id="navbarSupportedContent">
-
+    <!-- nav-bar for public area -->
     <ul class="navbar-nav mr-auto" *ngIf="!isSignedIn">
       <li class="nav-item active">
         <a class="nav-link" routerLink="home">home</a>
@@ -27,7 +27,7 @@
         <a class="nav-link" routerLink="signup">signup</a>
       </li>
     </ul>
-
+    <!-- nav-bar for member area -->
     <ul class="navbar-nav ml-auto" *ngIf="isSignedIn">
       <li class="nav-item">
         <a class="nav-link" routerLink="dashboard">{{ username }}</a>
