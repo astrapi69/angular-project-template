@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Signup} from '../components/sign/up/model/signup';
-import {RestPathService} from './rest/rest-path.service';
-import {newUrl} from './rest/url-functions';
+import {Signup} from '../../components/sign/up/model/signup';
+import {RestPathService} from '../rest/rest-path.service';
+import {newUrl} from '../rest/url-functions';
 
 @Injectable({
   providedIn: 'root'

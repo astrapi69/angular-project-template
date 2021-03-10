@@ -1,7 +1,7 @@
 import {ErrorHandler, Injectable} from "@angular/core";
-import {ErrorService} from "../services/error.service";
+import {ErrorService} from "../services/error-handling/error.service";
 import {HttpErrorResponse} from "@angular/common/http";
-import {LoggingService} from "../services/logging.service";
+import {LoggingService} from "../services/logging/logging.service";
 
 @Injectable()
 export class ApplicationErrorHandler implements ErrorHandler {

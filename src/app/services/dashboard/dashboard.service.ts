@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {RestPathService} from './rest/rest-path.service';
+import {RestPathService} from '../rest/rest-path.service';
 import {Observable} from 'rxjs';
-import {newUrl} from './rest/url-functions';
+import {newUrl} from '../rest/url-functions';
 
 @Injectable({
   providedIn: 'root'
